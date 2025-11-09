@@ -15,12 +15,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { useFormik } from "formik";
 
 interface PostContent {
-  onAddPost: (post: { tittle: string; content: string }) => void;
+  onAddPost: (post: { title: string; content: string }) => void;
 }
 
 export function DialogDemo({ onAddPost }: PostContent) {
   const formik = useFormik({
-    initialValues: { tittle: "", content: "" },
+    initialValues: { title: "", content: "" },
     onSubmit: (values, { resetForm }) => {
       onAddPost(values);
       resetForm();
@@ -42,18 +42,18 @@ export function DialogDemo({ onAddPost }: PostContent) {
           </DialogHeader>
           <div className="grid gap-4">
             <div className="grid gap-3">
-              <Label htmlFor="tittle-1">Tittle</Label>
+              <Label htmlFor="title-1">Title</Label>
               <Input
-                id="tittle-1"
-                name="tittle"
-                placeholder="Empty Tittle"
-                value={formik.values.tittle}
+                id="title-1"
+                name="title"
+                placeholder="Empty Title"
+                value={formik.values.title}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="content-1">Content  </Label>
+              <Label htmlFor="content-1">Content </Label>
               <Textarea
                 id="content-1"
                 name="content"

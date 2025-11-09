@@ -3,7 +3,7 @@ import { DialogDemo } from "./Dialog";
 
 interface HeaderProps {
   title?: string;
-  onAddPost: (post: { tittle: string; content: string }) => void;
+  onAddPost: (post: { title: string; content: string }) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ title = "My App", onAddPost }) => {

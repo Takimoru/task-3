@@ -1,11 +1,15 @@
 import { useState } from "react";
 import Header from "./components/Header";
-import { CardDemo } from "./components/Card";
+import HomePage from "./components/Homepage";
+import FetchApi from "./components/FetchApi";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 interface Post {
-  tittle: string;
+  title: string;
   content: string;
 }
+
+const queryClient = new QueryClient();
 
 function App() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -15,26 +19,24 @@ function App() {
   };
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Header onAddPost={addPost} />
       <div className="flex justify-center items-start min-h-screen p-4 pt-24">
         <div className="flex flex-wrap justify-center gap-4 w-full max-w-6xl">
-          {posts.length > 0 ? (
-            posts.map((post, index) => (
-              <CardDemo
-                key={index}
-                title={post.tittle}
-                content={post.content}
-              />
-            ))
-          ) : (
-            <p className="text-center text-gray-500">
-              No posts yet. Create one!
-            </p>
+          {posts.map((post, index) => (
+            <HomePage key={index} title={post.title} body={post.content} />
+          ))}
+          <FetchApi />
+          {posts.length === 0 && (
+            <div className="w-full">
+              <p className="text-center text-gray-500">
+                No posts yet. Create one!
+              </p>
+            </div>
           )}
         </div>
       </div>
-    </>
+    </QueryClientProvider>
   );
 }
 
