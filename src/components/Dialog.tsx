@@ -11,40 +11,69 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useFormik } from "formik";
 
-export function DialogDemo() {
+interface PostContent {
+  onAddPost: (post: { tittle: string; content: string }) => void;
+}
+
+export function DialogDemo({ onAddPost }: PostContent) {
+  const formik = useFormik({
+    initialValues: { tittle: "", content: "" },
+    onSubmit: (values, { resetForm }) => {
+      onAddPost(values);
+      resetForm();
+    },
+  });
+
   return (
     <Dialog>
-      <form>
-        <DialogTrigger asChild>
-          <Button variant="outline">Open Dialog</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+      <DialogTrigger asChild>
+        <Button variant="outline">Create Post</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <form onSubmit={formik.handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
+            <DialogTitle>Create Post</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when you&apos;re
-              done.
+              Create your post on form down bellow
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4">
             <div className="grid gap-3">
-              <Label htmlFor="name-1">Name</Label>
-              <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
+              <Label htmlFor="tittle-1">Tittle</Label>
+              <Input
+                id="tittle-1"
+                name="tittle"
+                placeholder="Empty Tittle"
+                value={formik.values.tittle}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="username-1">Username</Label>
-              <Input id="username-1" name="username" defaultValue="@peduarte" />
+              <Label htmlFor="content-1">Content  </Label>
+              <Textarea
+                id="content-1"
+                name="content"
+                placeholder="write post here!"
+                value={formik.values.content}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
             </div>
           </div>
           <DialogFooter>
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
-            <Button type="submit">Save changes</Button>
+            <DialogClose asChild>
+              <Button type="submit">Save changes</Button>
+            </DialogClose>
           </DialogFooter>
-        </DialogContent>
-      </form>
+        </form>
+      </DialogContent>
     </Dialog>
   );
 }
