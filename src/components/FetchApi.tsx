@@ -24,7 +24,7 @@ export default function FetchApi() {
   return (
     <>
       {data.map((post) => (
-        <div className="flex flex-col gap-6 items-center justify-center">
+        <div className="grid grid-col gap-4 items-center justify-center">
           <CardDemo key={post.id} title={post.title} body={post.body} />
         </div>
       ))}

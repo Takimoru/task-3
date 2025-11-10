@@ -22,7 +22,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Header onAddPost={addPost} />
       <div className="flex justify-center items-start min-h-screen p-4 pt-24">
-        <div className="flex flex-wrap justify-center gap-4 w-full max-w-6xl">
+        <div className="flex flex-wrap justify-center gap-2 w-full">
           {posts.map((post, index) => (
             <HomePage key={index} title={post.title} body={post.content} />
           ))}
