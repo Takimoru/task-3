@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import { CardDemo } from "./Card";
 
 interface Post {
@@ -6,9 +7,11 @@ interface Post {
   id: number;
   title: string;
   body: string;
+  onclick?: () => void;
 }
 
 export default function FetchApi() {
+  const navigate = useNavigate();
   const { isPending, error, data } = useQuery<Post[]>({
     queryKey: ["repoData"],
     queryFn: () =>
@@ -24,8 +27,14 @@ export default function FetchApi() {
   return (
     <>
       {data.map((post) => (
-        <div className="grid grid-col gap-4 items-center justify-center">
-          <CardDemo key={post.id} title={post.title} body={post.body} />
+        <div
+          key={post.id}
+          className="grid grid-col gap-4 items-center justify-center">
+          <CardDemo
+            title={post.title}
+            body={post.body}
+            onClick={() => navigate(`/post/${post.id}`)}
+          />
         </div>
       ))}
     </>

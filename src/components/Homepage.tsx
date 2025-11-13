@@ -6,9 +6,5 @@ interface HomePageProps {
 }
 
 export default function HomePage({ title, body }: HomePageProps) {
-  return (
-    <>
-      <CardDemo title={title} body={body} />
-    </>
-  );
+  return <CardDemo title={title} body={body} />;
 }

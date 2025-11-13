@@ -3,11 +3,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 interface CardProps {
   title: string;
   body: string;
+  onClick?: () => void;
 }
 
-export function CardDemo({ title, body }: CardProps) {
+export function CardDemo({ title, body, onClick }: CardProps) {
   return (
-    <Card className="w-full max-w-sm">
+    <Card onClick={onClick} className="w-full max-w-sm">
       <CardHeader>
         <CardTitle className="text-center">{title}</CardTitle>
       </CardHeader>
