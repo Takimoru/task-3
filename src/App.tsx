@@ -6,6 +6,7 @@ import HomePage from "./components/Homepage";
 import FetchApi from "./components/FetchApi";
 import ContentInside from "./components/content"; // Assuming you create this file
 import "./index.css";
+import { Toaster } from "@/components/ui/sonner";
 
 interface Post {
   id: number;
@@ -55,6 +56,7 @@ function App() {
         />
         <Route path="/post/:id" element={<ContentInside />} />
       </Routes>
+      <Toaster />
     </>
   );
 }

@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useFormik } from "formik";
-import { Alert, AlertDescription } from "./ui/alert";
+import { toast } from "sonner";
 import { useState } from "react";
 
 interface PostContent {
@@ -21,28 +21,21 @@ interface PostContent {
 }
 
 export function DialogDemo({ onAddPost }: PostContent) {
-  const [showAlert, showAlertProps] = useState(false);
+  const [open, setOpen] = useState(false);
+
   const formik = useFormik({
     initialValues: { title: "", content: "" },
     onSubmit: (values, { resetForm }) => {
       onAddPost(values);
+      toast.success("Post created successfully!");
       resetForm();
-
-      showAlertProps(true);
-      setTimeout(() => showAlertProps(false), 3000);
+      setOpen(false);
     },
   });
 
   return (
     <>
-      {showAlert && (
-        <div className="fixed bottom-4 right-4 z-50 w-[300px]">
-          <Alert>
-            <AlertDescription>Post created successfully!</AlertDescription>
-          </Alert>
-        </div>
-      )}
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button variant="outline">Create Post</Button>
         </DialogTrigger>
@@ -82,9 +75,7 @@ export function DialogDemo({ onAddPost }: PostContent) {
               <DialogClose asChild>
                 <Button variant="outline">Cancel</Button>
               </DialogClose>
-              <DialogClose asChild>
-                <Button type="submit">Save changes</Button>
-              </DialogClose>
+              <Button type="submit">Save changes</Button>
             </DialogFooter>
           </form>
         </DialogContent>
