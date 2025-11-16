@@ -17,7 +17,6 @@ function App() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   const addPost = (post: { title: string; content: string }) => {
-    // generate id otomatis
     const newPost: Post = {
       id: Date.now(),
       title: post.title,

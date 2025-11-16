@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { CardDemo } from "./Card";
+import { SkeletonCard } from "./Skeleton";
 
 interface Post {
   userId: number;
@@ -20,7 +21,7 @@ export default function FetchApi() {
       ),
   });
 
-  if (isPending) return "Loading...";
+  if (isPending) return <SkeletonCard />;
 
   if (error) return "An error has occurred: " + error.message;
 

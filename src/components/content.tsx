@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { CardDemo } from "./Card";
-import CommentPost from "./Comments";
+import Comments from "./Comments";
+import { SkeletonCard } from "./Skeleton";
 
 interface Post {
   userId: number;
@@ -25,21 +26,18 @@ export default function ContentInside() {
     enabled: !!id, // Hanya jalankan query jika id ada
   });
 
-  if (isPending) return "Loading...";
+  if (isPending) return <SkeletonCard />;
 
   if (error) return "An error has occurred: " + error.message;
 
   if (!data) return "Post not found.";
 
   return (
-    <>
+    <div className="pt-24">
       <div key={data.id} className="grid grid-col items-center justify-center">
         <CardDemo title={data.title} body={data.body} />
       </div>
-      <span></span>
-      <div>
-        <CommentPost />
-      </div>
-    </>
+      <Comments />
+    </div>
   );
 }
