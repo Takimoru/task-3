@@ -66,7 +66,7 @@ function CommentForm({ onAddComment }: CommentFormProps) {
     validationSchema,
     onSubmit: (values, { resetForm }) => {
       onAddComment(values);
-      toast.success("Post created successfully!");
+      toast.success("Comment added successfully!");
       resetForm();
     },
   });
@@ -82,6 +82,9 @@ function CommentForm({ onAddComment }: CommentFormProps) {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
+        {formik.touched.name && formik.errors.name && (
+          <p className="text-red-500 text-sm mt-1">{formik.errors.name}</p>
+        )}
 
         <Input
           id="email"
@@ -91,6 +94,9 @@ function CommentForm({ onAddComment }: CommentFormProps) {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
+        {formik.touched.email && formik.errors.email && (
+          <p className="text-red-500 text-sm mt-1">{formik.errors.email}</p>
+        )}
 
         <Textarea
           id="comment"
@@ -100,6 +106,9 @@ function CommentForm({ onAddComment }: CommentFormProps) {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
+        {formik.touched.comment && formik.errors.comment && (
+          <p className="text-red-500 text-sm mt-1">{formik.errors.comment}</p>
+        )}
 
         <Button type="submit">Submit</Button>
       </form>
