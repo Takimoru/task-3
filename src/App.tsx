@@ -33,8 +33,9 @@ function App() {
         <Route
           path="/"
           element={
-            <div className="flex justify-center items-start min-h-screen p-4 pt-24">
-              <div className="flex flex-wrap justify-center gap-2 w-full">
+            <div className="flex justify-center items-start min-h-screen p-4 pt-24 ">
+              <div className="flex flex-wrap justify-center gap-2 w-full ">
+                <div></div>
                 {posts.map((post) => (
                   <HomePage
                     key={post.id}
@@ -45,7 +46,7 @@ function App() {
                 <FetchApi />
                 {posts.length === 0 && (
                   <div className="w-full">
-                    <p className="text-center text-gray-500">
+                    <p className="text-center text-gray-500 ">
                       No posts yet. Create one!
                     </p>
                   </div>

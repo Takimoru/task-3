@@ -37,7 +37,9 @@ export function DialogDemo({ onAddPost }: PostContent) {
     <>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="outline">Create Post</Button>
+          <Button className="bg-black " variant="outline">
+            Create Post
+          </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <form onSubmit={formik.handleSubmit}>

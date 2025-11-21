@@ -42,7 +42,9 @@ function FetchComments({ postId }: CommentPostProps) {
     <div>
       <ul>
         {data?.slice(0, 5).map((c: any) => (
-          <li key={c.id} className="border p-2 rounded">
+          <li
+            key={c.id}
+            className="border p-2 rounded grid grid-col gap-4 items-center ">
             <strong>{c.email}</strong>
             <p>{c.body}</p>
           </li>
@@ -124,7 +126,7 @@ export default function Comments() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 grid grid-col gap-4 items-center justify-center ">
       <h2 className="text-2xl font-bold">Comments</h2>
 
       <CommentForm onAddComment={handleAddComment} />

@@ -34,7 +34,7 @@ export default function ContentInside() {
 
   return (
     <div className="pt-24">
-      <div key={data.id} className="grid grid-col items-center justify-center">
+      <div key={data.id} className="grid grid-col items-center justify-center ">
         <CardDemo title={data.title} body={data.body} />
       </div>
       <Comments />

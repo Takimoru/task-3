@@ -30,7 +30,7 @@ export default function FetchApi() {
       {data.map((post) => (
         <div
           key={post.id}
-          className="grid grid-col gap-4 items-center justify-center">
+          className="grid grid-col gap-4 items-center justify-center cursor-pointer">
           <CardDemo
             title={post.title}
             body={post.body}
